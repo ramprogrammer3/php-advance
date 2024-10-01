@@ -54,7 +54,10 @@ include 'header.php';
 
             <?php } else {
         echo '<h1>No Data Found </h1>';
-    } ?>
+    }
+
+    mysqli_close($conn);
+     ?>
     </div>
     </div>
     </body>
