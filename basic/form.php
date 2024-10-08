@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <h3>Global variable in PHP </h3>
-                <form action="textform.php" method="post">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                     <div class="mb-3">
                         <label class="form-label">Name</label>
                         <input type="text" class="form-control" name="name">
@@ -20,8 +20,17 @@
                         <label class="form-label">Age</label>
                         <input type="text" class="form-control" name="age">
                     </div>
-                    <button class="btn btn-sm btn-primary">Submit</button>
+                    <button class="btn btn-sm btn-primary" name="save">Submit</button>
                 </form>
+
+                <div class="mb-3">
+                    <?php
+                        if(isset($_POST['save'])){
+                            echo $_POST['name'] . "<br>";
+                            echo $_POST['age'] . "<br>";
+                        }
+                    ?>
+                </div>
             </div>
         </div>
     </div>

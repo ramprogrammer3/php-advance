@@ -1,11 +1,13 @@
 
 <?php
-$name = $_POST['name'];
-$age = $_POST['age'];
+// $name = $_POST['name'];
+// $age = $_POST['age'];
 
+echo "<pre>";
+print_r($_SERVER);
+echo "</pre>";
 
-echo "<h1>User Name is $name</h1>";
-echo "<h1>User age is $age</h1>";
-
+echo $_SERVER['PHP_SELF'];
+echo $_SERVER['HTTP_HOST'];
 
 ?>
