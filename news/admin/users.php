@@ -33,8 +33,8 @@
                               <td><?= $row['first_name']; ?> <?= $row['last_name']; ?> </td>
                               <td><?= $row['username']; ?></td>
                               <td><?= $row['role'] === '0' ? 'User' : 'Admin'; ?></td>
-                              <td class='edit'><a href='update-user.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-user.php'><i class='fa fa-trash-o'></i></a></td>
+                              <td class='edit'><a href='update-user.php?id=<?= $row['user_id']; ?>'><i class='fa fa-edit'></i></a></td>
+                              <td class='delete'><a href='delete-user.php?id=<?= $row['user_id']; ?>'><i class='fa fa-trash-o'></i></a></td>
                           </tr>
                           <?php } ?>
                          
