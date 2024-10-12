@@ -13,7 +13,17 @@
                 <?php 
 
                     include 'config.php';
-                    $sql = "SELECT * FROM category ORDER BY category_id DESC";
+
+                    $limit = 3;
+                    if(isset($_GET['page'])){
+                        $page = $_GET['page'];
+                    }else{
+                        $page = 1;
+                    }
+
+                    $offset = ($page - 1) * $limit;
+
+                    $sql = "SELECT * FROM category ORDER BY category_id DESC LIMIT {$offset}, {$limit}";
                     $result = mysqli_query($conn,$sql) or die("Query failed");
 
                     if(mysqli_num_rows($result) > 0){
@@ -42,12 +52,40 @@
                         
                     </tbody>
                 </table>
-                <?php } ?>
+                <?php } 
+                    $sql1 = "SELECT * FROM category";
+                    $result1 = mysqli_query($conn,$sql1) or die("Query failed");
+
+                    if(mysqli_num_rows($result1) > 0){
+                        $total_records = mysqli_num_rows($result1);
+                        $total_page = ceil($total_records / $limit);
+                ?>
                 <ul class='pagination admin-pagination'>
-                    <li class="active"><a>1</a></li>
-                    <li><a>2</a></li>
-                    <li><a>3</a></li>
+                    <?php 
+                        if($page > 1){
+                            echo "<li><a href='category.php?page=".($page - 1)."'>Prev</a></li>";
+                        }
+                    ?>
+                    <?php
+                        for($i = 1; $i<=$total_page; $i++){
+                            if($i == $page){
+                                $active = "active";
+                            }else{
+                                $active = "";
+                            }
+                            echo "<li class = '{$active}'>
+                                <a href = 'category.php?page={$i}'> {$i}</a>
+                            </li>";
+                        }
+                    ?>
+                    <?php 
+                        if($total_page > $page){
+                            echo "<li><a href='category.php?page=".($page + 1)."'>Next</a></li>";
+                        }
+                    ?>
                 </ul>
+
+                <?php } ?>
             </div>
         </div>
     </div>
