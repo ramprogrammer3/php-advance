@@ -8,7 +8,7 @@
         $result = mysqli_query($conn,$sql) or die("Query failed");
 
         if(mysqli_num_rows($result) > 0){
-            echo "<p class = 'color:red;text-align:center;'>This category is already exist</p>";
+            echo "<p style = 'color:red;text-align:center;'>This category is already exist</p>";
         }else{
             $sql1 = "INSERT INTO category (category_name)
                     VALUES ('{$category}')";
@@ -29,7 +29,7 @@
               <div class="col-md-offset-3 col-md-6">
                   <!-- Form Start -->
                   <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" autocomplete="off">
-                      <div class="form-group">
+                      <div class="form-group" >
                           <label>Category Name</label>
                           <input type="text" name="cat" class="form-control" placeholder="Category Name" required>
                       </div>
