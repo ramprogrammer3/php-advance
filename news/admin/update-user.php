@@ -1,8 +1,14 @@
-<?php include "header.php";?>
+<?php include "header.php";
+include 'config.php';
+if($_SESSION['role'] == '0'){
+    header("Location: {$hostname}/admin/post.php");
+}
+
+
+?>
 
 <?php
     if(isset($_POST['submit'])){
-        include 'config.php';
         $id = $_GET['id'];
         $firstname = mysqli_real_escape_string($conn,$_POST['f_name']);
         $lastname = mysqli_real_escape_string($conn,$_POST['l_name']);

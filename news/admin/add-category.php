@@ -1,8 +1,12 @@
 <?php include "header.php"; 
 
+include 'config.php';
+if($_SESSION['role'] == '0'){
+    header("Location: {$hostname}/admin/post.php");
+}
+
+
     if(isset($_POST['save'])){
-        
-        include 'config.php';
         $category = mysqli_real_escape_string($conn,$_POST['cat']);
         $sql = "SELECT category_name FROM category WHERE category_name = '{$category}'";
         $result = mysqli_query($conn,$sql) or die("Query failed");
