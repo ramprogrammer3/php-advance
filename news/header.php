@@ -34,12 +34,23 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <?php
+
+                    include "config.php";
+                    $sql = "SELECT * FROM category WHERE post > 0";
+                    $result = mysqli_query($conn,$sql) or die("Query failed : Category");
+                    if(mysqli_num_rows($result) > 0){
+                
+                ?>
                 <ul class='menu'>
-                    <li><a href='category.php'>Business</a></li>
-                    <li><a href='category.php'>Entertainment</a></li>
-                    <li><a href='category.php'>Sports</a></li>
-                    <li><a href='category.php'>Politics</a></li>
+                    <?php 
+                        while($row = mysqli_fetch_assoc($result)){
+                    ?>
+                    <li><a href='<?= $row["category_name"] ?>.php'> <?= $row['category_name']; ?> </a></li>
+                    <?php } ?>
                 </ul>
+
+                <?php } ?>
             </div>
         </div>
     </div>
