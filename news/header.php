@@ -37,19 +37,27 @@
                 <?php
 
                     include "config.php";
+
+                    $active = "";
+                    
                     $sql = "SELECT * FROM category WHERE post > 0";
                     $result = mysqli_query($conn,$sql) or die("Query failed : Category");
                     if(mysqli_num_rows($result) > 0){
-                
                 ?>
                 <ul class='menu'>
                     <?php 
                         while($row = mysqli_fetch_assoc($result)){
+                            if(isset($_GET["cid"])){
+                                if($row['category_id'] == $_GET['cid']){
+                                    $active = "active";
+                                }else{
+                                    $active = "";
+                                }
+                            }
+                           echo "<li> <a class = '{$active}' href='category.php?cid={$row['category_id']}'> {$row['category_name']}  </a> </li>";
+                        }    
                     ?>
-                    <li><a href='<?= $row["category_name"] ?>.php'> <?= $row['category_name']; ?> </a></li>
-                    <?php } ?>
                 </ul>
-
                 <?php } ?>
             </div>
         </div>
